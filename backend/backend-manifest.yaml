@@ -60,7 +60,7 @@ spec:
     port: 8080
     targetPort: 8080
 ---
-apiVersion: autoscaling/v2
+apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
   name: backend
