@@ -5,14 +5,13 @@ metadata:
   namespace: expense  
 data:
   DB_HOST: mysql
- 
+
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend
   namespace: expense
-  # labels of deployment resource
   labels:
     app: backend
     tier: app
@@ -35,7 +34,6 @@ spec:
       - name: backend
         image: omparameswara123/backend:1.0.0
         resources:
-        # Always ensure requests are less than or equal(<=) to limits
           requests:
             cpu: "100m"
             memory: "2Gi"
@@ -43,20 +41,21 @@ spec:
             cpu: "200m"
             memory: "3Gi"
         envFrom:
-        - ConfigMapKeyRef:
+        - configMapRef:
             name: backend
+
 ---
-kind: Service
 apiVersion: v1
+kind: Service
 metadata:
   name: backend
   namespace: expense
 spec:
-  selector: # labels are used as selectors
+  selector:
     app: backend
     tier: app
     project: expense
   ports:
   - protocol: TCP
-    port: 8080 # service port
+    port: 8080
     targetPort: 8080
