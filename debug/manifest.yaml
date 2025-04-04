@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: pod
+metadata:
+  name: debug
+  namespace: expense
+spec:
+  containers:
+  # docker run -d --name nginx -p 80:80 nginx
+  - name: debug
+    image: omaparameswara123/debug:1.0.0
