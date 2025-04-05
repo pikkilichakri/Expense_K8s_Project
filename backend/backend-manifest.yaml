@@ -30,6 +30,11 @@ spec:
         tier: app
         project: expense
     spec:
+      iniContainers:
+      - name: mysql-check
+        image: busybox:1.28
+        command: ['sh', '-c', "until nslookup mysql; do echo waiting for myservice; sleep 2; done"]
+
       containers:
       - name: backend
         image: omparameswara123/backend:1.0.0
