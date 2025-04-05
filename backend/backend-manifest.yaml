@@ -33,6 +33,17 @@ spec:
       containers:
       - name: backend
         image: omparameswara123/backend:1.0.0
+        readinessProbe:
+          tcpSocket:
+            port: 8080
+          initialDelaySeconds: 15
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 3306
+          initialDelaySeconds: 15
+          periodSeconds: 10
         resources:
           requests:
             cpu: "100m"
